@@ -198,14 +198,14 @@ public abstract class AbstractCalendarAccessor {
                 selection += Events.TITLE + " LIKE ?";
                 selectionList.add("%" + title + "%");
             }
-            if (location != null && !location.equals("")) {
+            if (location != null && !"".equals(location)) {
                 if (!"".equals(selection)) {
                     selection += " AND ";
                 }
                 selection += Events.EVENT_LOCATION + " LIKE ?";
                 selectionList.add("%" + location + "%");
             }
-            if (notes != null && !notes.equals("")) {
+            if (notes != null && !"".equals(notes)) {
                 if (!"".equals(selection)) {
                     selection += " AND ";
                 }
@@ -377,19 +377,19 @@ public abstract class AbstractCalendarAccessor {
                     String[] rrule_rules = cursor.getString(cols[6]).split(";");
                     for (String rule : rrule_rules) {
                         String rule_type = rule.split("=")[0];
-                        if (rule_type.equals("FREQ")) {
+                        if ("FREQ".equals(rule_type)) {
                             event.recurrenceFreq = rule.split("=")[1];
-                        } else if (rule_type.equals("INTERVAL")) {
+                        } else if ("INTERVAL".equals(rule_type)) {
                             event.recurrenceInterval = rule.split("=")[1];
-                        } else if (rule_type.equals("WKST")) {
+                        } else if ("WKST".equals(rule_type)) {
                             event.recurrenceWeekstart = rule.split("=")[1];
-                        } else if (rule_type.equals("BYDAY")) {
+                        } else if ("BYDAY".equals(rule_type)) {
                             event.recurrenceByDay = rule.split("=")[1];
-                        } else if (rule_type.equals("BYMONTHDAY")) {
+                        } else if ("BYMONTHDAY".equals(rule_type)) {
                             event.recurrenceByMonthDay = rule.split("=")[1];
-                        } else if (rule_type.equals("UNTIL")) {
+                        } else if ("UNTIL".equals(rule_type)) {
                             event.recurrenceUntil = rule.split("=")[1];
-                        } else if (rule_type.equals("COUNT")) {
+                        } else if ("COUNT".equals(rule_type)) {
                             event.recurrenceCount = rule.split("=")[1];
                         } else {
                             Log.d(LOG_TAG, "Missing handler for " + rule);
